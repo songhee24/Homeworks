@@ -1,0 +1,40 @@
+Что такое Enum?
+enum  это специальный класс который представляет группу констант (неизменяемые переменные)
+
+Приведите 3 примера где можно было бы использовать Enum?
+времена года
+название городов
+название популярных брэндов
+
+
+Какие плюсы использования Enum вы знаете?
+enum  полноценный объект
+меньше места при сипользовании switch
+есть свои методы
+
+
+Когда лучше использовать LinkedList, ArrayList и обычный Array?
+LinkedList когда нужно быстро удалять или добавлять элемент в начало или в конец
+ArrayList когда мы не знаем  размер нашего массива и когда нужно быстро добавлять элемент в конец
+Array когда мы знаем размер массива
+
+Напишите кодом любой пример из 2. Пункта используя switch case
+public enum Seasons {
+    WINTER,
+    SUMMER,
+    SPRING,
+    AUTUMN;
+}
+        Seasons arg = Seasons.AUTUMN;
+
+        switch (arg)
+        {
+            case WINTER:
+            System.out.println("It's winter! Christmas time!"); break;
+            case SUMMER:
+                System.out.println("It's summer! Let's go to the beach!"); break;
+            case SPRING:
+                System.out.println("It's spring! Easter is coming!"); break;
+            case AUTUMN:
+                System.out.println("It's AUTUMN! Helloween is coming!"); break;
+        }
