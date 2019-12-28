@@ -1,0 +1,96 @@
+create table sport_types1 (
+	id integer primary key,
+	name varchar(50) not null,
+	salary integer  not null
+);
+create table trainers1 (
+	id integer primary key,
+	name varchar(50) not null,
+	phone_number varchar(20),
+	inn varchar(14) unique not null,
+	sport_type1 integer references sport_types1(id),
+	visitors integer references visitors(id)
+);
+
+
+create table visitors(
+    id integer primary key,
+    name varchar(50) not null,
+    birthday varchar(50) not null,
+    gender varchar(50) not null,
+    trainers1 integer references trainers1(id)
+);
+
+create table visits(
+   visitors integer references visitors(id),
+   time integer not null,
+   trainers1 integer references trainers1(id)
+);
+
+select * from
+sport_types1;
+insert into sport_types1 (id, name, salary)
+values (1, 'Football', 2000);
+insert into sport_types1 (id, name, salary)
+values (2, 'Basketball', 3000);
+insert into sport_types1 (id, name, salary)
+values (3, 'Valleyball', 3000);
+insert into sport_types1 (id, name, salary)
+values (4, 'Esports', 4000);
+insert into sport_types1 (id, name, salary)
+values (5, 'Swimming', 6000);
+
+select * from visitors;
+insert into visitors (id, name,birthday,gender,trainers1)
+values (1, 'Alex', 'may 16th','male',2);
+insert into visitors (id, name,birthday,gender,trainers1)
+values (5, 'Sasha', 'October 16th','femal',41);
+insert into visitors (id, name,birthday,gender,trainers1)
+values (8, 'Archi', 'September 16th','male',41);
+insert into visitors (id, name,birthday,gender,trainers1)
+values (9, 'Nolan', 'may 16th','male',6);
+insert into visitors (id, name,birthday,gender,trainers1)
+values (13, 'Erkin', 'may 16th','male',2);
+insert into visitors (id, name,birthday,gender,trainers1)
+values (14, 'LilPeep', 'November 22nd','male',11);
+insert into visitors (id, name,birthday,gender,trainers1)
+values (15, 'Morgen', 'may 16th','male',10);
+insert into visitors (id, name,birthday,gender,trainers1)
+values (16, 'Ray', 'may 16th','femal',7);
+
+select * from trainers1;
+insert into trainers1(id,name,phone_number,inn,sport_type1,visitors)
+values (2,'trainer','1234567','abc125o',1,1);
+insert into trainers1(id,name,phone_number,inn,sport_type1,visitors)
+values (41,'trainer','12345678','abc1255u',2,5);
+insert into trainers1(id,name,phone_number,inn,sport_type1,visitors)
+values (6,'trainer','12345678','abc1255g',3,9);
+insert into trainers1(id,name,phone_number,inn,sport_type1,visitors)
+values (7,'trainer','12345678','abc1255x',4,16);
+insert into trainers1(id,name,phone_number,inn,sport_type1,visitors)
+values (10,'trainer','12345678','abc1255c',5,15);
+insert into trainers1(id,name,phone_number,inn,sport_type1,visitors)
+values (11,'trainer','12345678','abc1255cv',5,14);
+
+select * from visits;
+insert into visits(visitors,time,trainers1)
+values(8,13,41);
+insert into visits(visitors,time,trainers1)
+values(13,14,6);
+insert into visits(visitors,time,trainers1)
+values(14,15,11);
+insert into visits(visitors,time,trainers1)
+values(15,16,10);
+insert into visits(visitors,time,trainers1)
+values(16,17,2);
+
+select *
+from visits v
+join trainers1 t  on v.trainers1 = t.id
+join sport_types1 st on t.sport_type1 = st.id
+where st."name" = 'Swimming'
+order by v."time" desc;
+
+
+
+
