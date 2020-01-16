@@ -38,6 +38,16 @@ public class Main {
             System.out.println(Status.FAIL + " Password is incorrect");
             return;
         }
+        String reversePass = user.reversePassword(pass);
+        if (userRemotePassword.equals(reversePass)){
+            DB.loginUser(user.getId(),"ok");
+            System.out.println(reversePass + " locale");
+            System.out.println(userRemotePassword + " remote");
+            System.out.println(Status.OK + " Authorization successful");
+        } else if (!userRemotePassword.equals(reversePass)){
+            System.out.println(Status.FAIL + " Password is incorrect");
+            return;
+        }
         if (pass.equals(password)){
             DB.loginUser(user.getId(),"ok");
             System.out.println(Status.OK + " Authorization successful");
